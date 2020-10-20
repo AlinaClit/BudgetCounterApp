@@ -52,19 +52,47 @@
             android:layout_marginBottom="30dp"
             android:ems="10"
             android:prompt="@string/category_prompt"
-            app:layout_constraintBottom_toTopOf="@+id/comment"
+            app:layout_constraintBottom_toTopOf="@+id/date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/date"
+            android:layout_width="326dp"
+            android:layout_height="49dp"
+            android:orientation="horizontal">
+            app:layout_constraintBottom_toTopOf="@+id/comment"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            <ImageView
+                android:id="@+id/select_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="open date picker"
+                android:src = "@drawable/calendar"/>
+
+            <EditText
+                android:id="@+id/show_date"
+                android:layout_width="191dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf ="@+id/select_date"
+                android:hint="Date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
 
         <EditText
             android:id="@+id/comment"
             android:layout_width="326dp"
             android:layout_height="44dp"
-            android:layout_marginBottom="220dp"
+            android:layout_marginBottom="30dp"
             android:ems="10"
             android:hint="@string/comment_hint"
             android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/button_second"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
