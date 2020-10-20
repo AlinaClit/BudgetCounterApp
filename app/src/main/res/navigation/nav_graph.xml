@@ -13,13 +13,13 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/NewReceipt" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.buco.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/add_receipt">
+        android:id="@+id/NewReceipt"
+        android:name="com.example.buco.NewReceipt"
+        android:label="@string/new_receipt_label"
+        tools:layout="@layout/new_receipt">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
