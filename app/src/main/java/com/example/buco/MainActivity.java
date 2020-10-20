@@ -12,15 +12,26 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    String[] categories = { "Groceries", "Bills", "Drugs", "Fashion", "Beauty", "Night Out" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Spinner spin = (Spinner) findViewById(R.id.category);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(adapter);
+        spin.setOnItemSelectedListener(this);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -30,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
+        Toast.makeText(getApplicationContext(), "Selected User: "+ categories[position] ,Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO - Custom Code
     }
 
     @Override
