@@ -1,8 +1,7 @@
 package com.example.buco;
 
-import android.app.DatePickerDialog;
 import android.app.Activity;
-import android.content.Context;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,19 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
-public class NewReceipt extends Fragment implements AdapterView.OnItemSelectedListener {
 import com.example.buco.database.DatabaseHelper;
-import com.example.buco.model.Receipt;
 
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class NewReceipt extends Fragment implements AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
 
@@ -38,14 +30,9 @@ public class NewReceipt extends Fragment implements AdapterView.OnItemSelectedLi
     EditText valueEditText;
     EditText shopEditText;
     EditText commentEditText;
-    String[] categories = {"Groceries", "Bills", "Drugs", "Fashion", "Beauty", "Night Out"};
-    EditText shop;
-    EditText comment;
-    EditText date;
+    EditText dateEditText;
     ImageView selectDate;
-    EditText value;
-    EditText category;
-    Spinner spin;
+    Spinner categorySpinner;
 
     private int day, month, year;
 
@@ -74,8 +61,8 @@ public class NewReceipt extends Fragment implements AdapterView.OnItemSelectedLi
 //            }
             @Override
             public void onClick(View view) {
-                databaseHelper.addReceipt(Integer.valueOf(value.getText().toString().trim()), shop.getText().toString().trim(),
-                        spin.getSelectedItem().toString(), date.getText().toString().trim(), comment.getText().toString().trim());
+                databaseHelper.addReceipt(Integer.valueOf(valueEditText.getText().toString().trim()), shopEditText.getText().toString().trim(),
+                        categorySpinner.getSelectedItem().toString(), dateEditText.getText().toString().trim(), commentEditText.getText().toString().trim());
             }
 
 
@@ -93,7 +80,7 @@ public class NewReceipt extends Fragment implements AdapterView.OnItemSelectedLi
 
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        date.setText(dayOfMonth+"-" +month+"-"+year);
+                        dateEditText.setText(dayOfMonth+"-" +month+"-"+year);
                     }
                 }, year, month, day);
 
@@ -101,18 +88,18 @@ public class NewReceipt extends Fragment implements AdapterView.OnItemSelectedLi
             }
         });
 
-        shop = view.findViewById(R.id.shop);
-//        category = view.findViewById(R.id.category);
-        value = view.findViewById(R.id.value);
-        date = view.findViewById(R.id.show_date);
+        valueEditText = (EditText) view.findViewById(R.id.value);
+        shopEditText = (EditText) view.findViewById(R.id.shop);
+        commentEditText = (EditText) view.findViewById(R.id.comment);
+        dateEditText = view.findViewById(R.id.show_date);
         selectDate = view.findViewById(R.id.select_date);
-        comment = view.findViewById(R.id.comment);
 
-        spin = getView().findViewById(R.id.category);
+
+        categorySpinner = getView().findViewById(R.id.category);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin.setAdapter(adapter);
-        spin.setOnItemSelectedListener(this);
+        categorySpinner.setAdapter(adapter);
+        categorySpinner.setOnItemSelectedListener(this);
     }
 
     private void HideKeyboardOnEditTextFocusLost(@NonNull View view) {

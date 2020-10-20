@@ -60,9 +60,10 @@
             android:id="@+id/date"
             android:layout_width="326dp"
             android:layout_height="49dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/comment"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="30dp">
 
             <ImageView
                 android:id="@+id/select_date"
