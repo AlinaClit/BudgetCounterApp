@@ -11,4 +11,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="add">Add receipt</string>
     <string name="category_prompt">Choose a category</string>
+    <string name="shop_hint">Shop</string>
+    <string name="value_hint">Value</string>
+    <string name="comment_hint">Comment</string>
 </resources>
